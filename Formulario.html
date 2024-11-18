@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías Independientes</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .category-container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .tab {
+            border: 1px solid #F1E3C8;
+            flex: 1;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #393D32;
+            color: #F1E3C8;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .tab.active {
+            color: #F1E3C8;
+        }
+
+        .content {
+            display: none;
+            background-color: #393D32;
+            color: #F1E3C8;
+            border: 1px solid #F1E3C8;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        /*
+        modularizacion
+        abstraccion
+        */
+    </style>
+</head>
+
+<body>
+    <div class="category-container" id="category1">
+        <h3 style="color: #F1E3C8;">Controles</h3>
+        <div class="tabs">
+            <div class="tab" onclick="showContent('controlesMenus', 'category1')">Menus</div>
+            <div class="tab" onclick="showContent('controlesPartida', 'category1')">Partida y resolución</div>
+            <div class="tab" onclick="showContent('controlesOtros', 'category1')">Otros</div>
+        </div>
+        <div id="controlesMenus" class="content active">
+            <p>M = Aprendizaje de atributos</p>
+            <p>K = Aprendizaje de habilidades</p>
+            <p>J = Apartado de misiones</p>
+            <p>O = Apartado de estados</p>
+            <p>I = Abrir inventario</p>
+            <p>N o A = Atajos de teclado</p>
+        </div>
+        <div id="controlesPartida" class="content">
+            <p>F4 = Guardado rápido</p>
+            <p>F8 = Cargado rápido</p>
+            <p>F5 = Pantalla completa</p>
+            <p>F6 = Escalado de pantalla</p>
+        </div>
+        <div id="controlesOtros" class="content">
+            <p>N = Mostrar detalles (Se usa en Menu)</p>
+            <p>P = Mostrar/Ocultar personaje</p>
+            <p>T = Mostrar/Ocultar tiempo/Nombre de estado</p>
+        </div>
+    </div>
+
+    <div class="category-container" id="category2">
+        <h3 style="color: #F1E3C8;">Consejos</h3>
+        <div class="tabs">
+            <div class="tab" onclick="showContent('consejosCargado', 'category2')">Cargado de partida</div>
+            <div class="tab" onclick="showContent('consejosMisiones', 'category2')">Misiones</div>
+            <div class="tab" onclick="showContent('consejosEstilo', 'category2')">Estilo de vida</div>
+        </div>
+        <div id="consejosCargado" class="content active">
+            <p>Respecto al tema de cargar partida deberás tener cuidado por : </p>
+            <blockquote>Perderás X objetos; estate atento a las descripciones de los objetos.</blockquote>
+            <blockquote>Algunos eventos no ocurrirán tras haber cargado la partida; la espera es de 24H tras cargarla.
+            </blockquote>
+            <blockquote>Algunas misiones sufrirán el término "Misión fallida"; estate atento a las descripciones de las
+                misiones.
+            </blockquote>
+            <p>Esto se debe a que el juego posee un script que detecta cuando el jugador carga la partida; según leí los
+                comentarios, esto es para evitar trampas.</p>
+        </div>
+        <div id="consejosMisiones" class="content">
+            <p>Se recomienda aceptar un máximo de 3-5 misiones al mismo tiempo , entre las misiones más sencillas son :
+            </p>
+            <blockquote>Cacería de Slimes</blockquote>
+            <blockquote>Cacería de Avispas</blockquote>
+            <blockquote>Cacería de conejos</blockquote>
+            <blockquote>Recolección de recursos (requiere herramientas)</blockquote>
+        </div>
+        <div id="consejosEstilo" class="content">
+            <p>Estate atento a los estados de Hambre, Sed y Sueño por que :</p>
+            <blockquote>Estar por encima de 50% reduce tu movilidad y el daño causado.</blockquote>
+            <blockquote>Si uno de estos estados cae a cero, será un Game Over definitivo.</blockquote>
+            <p>Cuidado con terrenos peligrosos y trampas; la hemorragia es letal.</p>
+            <p>Al anochecer, debes tener extrema precaución :</p>
+            <blockquote>Los enemigos se vuelven más feroces.</blockquote>
+            <blockquote>Mayor probabilidad de caer en trampas.</blockquote>
+            <blockquote>Probabilidad de ánimo bajo, reduciendo varios atributos.</blockquote>
+        </div>
+    </div>
+
+    <script>
+        function showContent(id, categoryId) {
+            const category = document.getElementById(categoryId);
+            const contents = category.querySelectorAll('.content');
+            const tabs = category.querySelectorAll('.tab');
+
+            contents.forEach(content => content.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
